@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+site_name: opensearch_log
+site_url: https://andgineer.github.io/opensearch-log
+site_author: Andrey Sorokin
+
+# Repository
+repo_name: opensearch_log
+repo_url: https://github.com/andgineer/opensearch-log
+edit_uri: edit/master/docs
+docs_dir: 'ru'
+site_dir: '../site/ru'
+
+plugins:
+  - awesome-pages
+  - search:
+      lang: ru
+
+markdown_extensions:
+  - abbr
+  - attr_list
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.snippets:
+      base_path: 'docs'
+
+theme:
+  name: material
+  features:
+    - toc.integrate
+    - navigation.tracking
+    - content.code.copy
+
+extra:
+  alternate:
+    - name: English
+      link: /opensearch_log/en/
+      lang: en
+    - name: Russian
+      link: /opensearch_log/ru/
+      lang: ru

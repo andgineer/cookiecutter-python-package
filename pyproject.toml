@@ -1,0 +1,35 @@
+[build-system]
+requires = [ "hatchling",]
+build-backend = "hatchling.build"
+
+[project]
+name = "opensearch-log"
+dynamic = [ "version",]
+description = "A Python logging handler for efficient and reliable direct log transmission to OpenSearch."
+keywords = [ "opensearch", "log", "log-handler",]
+classifiers = [ "Programming Language :: Python :: 3", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent",]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = []
+[[project.authors]]
+name = "Andrey Sorokin"
+email = "andrey@sorokin.engineer"
+
+[project.license]
+file = "LICENSE.txt"
+
+[project.urls]
+Homepage = "https://andgineer.github.io/opensearch-log/"
+Documentation = "https://andgineer.github.io/opensearch-log/"
+
+[tool.setuptools]
+packages = "find:"
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.manifest]
+include = [ "README.md", "LICENSE.txt",]
+
+[tool.hatch.version]
+path = "src/opensearch_log/__about__.py"
