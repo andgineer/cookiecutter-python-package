@@ -26,7 +26,7 @@ pipx install cookiecutter
 
 Once Cookiecutter is installed, generate your project:
 
-    cookiecutter gh:your-username/your-template-repo
+    cookiecutter gh:andgineer/cookiecutter-python-package
 
 Follow the prompts to enter your project details.
 

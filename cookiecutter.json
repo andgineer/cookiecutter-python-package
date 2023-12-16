@@ -1,4 +1,5 @@
 {
     "package_name": "kebab-style name (e.g., 'my-awesome-package')",
+    "project_slug": "{{ cookiecutter.package_name|replace('-', '_') }}",
     "package_description": "A short description of the package"
 }
