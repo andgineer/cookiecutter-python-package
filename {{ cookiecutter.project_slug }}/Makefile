@@ -1,5 +1,5 @@
 #!make
-VERSION := $(shell grep '__version__' src/{{ cookiecutter.package_name|replace('-', '_') }}/__about__.py | cut -d '"' -f2)
+VERSION := $(shell grep '__version__' src/{{ cookiecutter.project_slug }}/__about__.py | cut -d '"' -f2)
 export VERSION
 
 .HELP: version ## Show the current version

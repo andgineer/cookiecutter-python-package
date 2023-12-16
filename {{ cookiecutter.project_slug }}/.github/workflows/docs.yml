@@ -1,3 +1,4 @@
+{% raw %}
 # build docs from docstrings and markdown-file in folder docs
 # publish them as github pages
 #
@@ -31,3 +32,4 @@ jobs:
       - run: ./scripts/build-docs.sh
       - run: |
           ghp-import --no-jekyll --push --force site
+{% endraw %}

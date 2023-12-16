@@ -32,4 +32,4 @@ packages = "find:"
 include = [ "README.md", "LICENSE.txt",]
 
 [tool.hatch.version]
-path = "src/{{ cookiecutter.package_name|replace('-', '_') }}/__about__.py"
+path = "src/{{ cookiecutter.project_slug }}/__about__.py"

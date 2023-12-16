@@ -1,3 +1,4 @@
+{% raw %}
 # build docs from docstrings and markdown-file in folder docs
 # publish them as github pages
 #
@@ -25,3 +26,4 @@ jobs:
           pip install -r requirements.dev.txt
           python -m pip install -e .
       - run: pre-commit run --verbose --all-files
+{% endraw %}

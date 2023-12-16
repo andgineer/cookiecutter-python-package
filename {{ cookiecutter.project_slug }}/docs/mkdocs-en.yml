@@ -1,10 +1,10 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
-site_name: {{ cookiecutter.package_name|replace('-', '_') }}
+site_name: {{ cookiecutter.project_slug }}
 site_url: https://andgineer.github.io/{{ cookiecutter.package_name }}
 site_author: Andrey Sorokin
 
 # Repository
-repo_name: {{ cookiecutter.package_name|replace('-', '_') }}
+repo_name: {{ cookiecutter.project_slug }}
 repo_url: https://github.com/andgineer/{{ cookiecutter.package_name }}
 edit_uri: edit/master/docs
 docs_dir: 'en'
@@ -33,8 +33,8 @@ theme:
 extra:
   alternate:
     - name: English
-      link: /{{ cookiecutter.package_name|replace('-', '_') }}/en/
+      link: /{{ cookiecutter.project_slug }}/en/
       lang: en
     - name: Russian
-      link: /{{ cookiecutter.package_name|replace('-', '_') }}/ru/
+      link: /{{ cookiecutter.project_slug }}/ru/
       lang: ru

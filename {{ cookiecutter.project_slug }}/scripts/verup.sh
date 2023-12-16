@@ -5,7 +5,7 @@
 #   verup.sh release / feature / branch / ss
 # (ss - to create snapshot version)
 
-VERSION_FILES=("src/{{ cookiecutter.package_name|replace('-', '_') }}/__about__.py")
+VERSION_FILES=("src/{{ cookiecutter.project_slug }}/__about__.py")
 
 set -u  # fail on unset variables
 set -e  # if any command fails, stop execution
