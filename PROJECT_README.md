@@ -1,0 +1,20 @@
+[![Build Status](https://github.com/andgineer/{{ cookiecutter.package_name }}/workflows/CI/badge.svg)](https://github.com/andgineer/{{ cookiecutter.package_name }}/actions)
+[![Coverage](https://raw.githubusercontent.com/andgineer/{{ cookiecutter.package_name }}/python-coverage-comment-action-data/badge.svg)](https://htmlpreview.github.io/?https://github.com/andgineer/{{ cookiecutter.package_name }}/blob/python-coverage-comment-action-data/htmlcov/index.html)
+# {{ cookiecutter.package_name }}
+
+{{ cookiecutter.package_description }} 
+
+# Documentation
+
+[{{ cookiecutter.package_name|replace('-', ' ')|title }}](https://andgineer.github.io/{{ cookiecutter.package_name }}/en/)
+
+# Developers
+
+Do not forget to run `. ./activate.sh`.
+
+# Scripts
+    make help
+
+## Coverage report
+* [Codecov](https://app.codecov.io/gh/andgineer/{{ cookiecutter.package_name }}/tree/main/src%2F{{ cookiecutter.package_name|replace('-', '_') }})
+* [Coveralls](https://coveralls.io/github/andgineer/{{ cookiecutter.package_name }})

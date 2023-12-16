@@ -1,2 +1,2 @@
-# opensearch-log
+# {{ cookiecutter.package_name }}
 

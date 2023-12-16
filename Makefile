@@ -1,5 +1,5 @@
 #!make
-VERSION := $(shell grep '__version__' src/opensearch_log/__about__.py | cut -d '"' -f2)
+VERSION := $(shell grep '__version__' src/{{ cookiecutter.package_name|replace('-', '_') }}/__about__.py | cut -d '"' -f2)
 export VERSION
 
 .HELP: version ## Show the current version
@@ -29,13 +29,13 @@ reqs:
 .HELP: docs  ## Docs preview English
 docs:
 	./scripts/docstrings.sh
-	open -a "Google Chrome" http://127.0.0.1:8000/opensearch-log/
+	open -a "Google Chrome" http://127.0.0.1:8000/{{ cookiecutter.package_name }}/
 	mkdocs serve -f docs/mkdocs-en.yml
 
 .HELP: docs-ru  ## Docs preview Russian
 docs-ru:
 	./scripts/docstrings.sh
-	open -a "Google Chrome" http://127.0.0.1:8000/opensearch-log/
+	open -a "Google Chrome" http://127.0.0.1:8000/{{ cookiecutter.package_name }}/
 	mkdocs serve -f docs/mkdocs-ru.yml
 
 .HELP: help  ## Display this message

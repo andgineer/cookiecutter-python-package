@@ -7,7 +7,7 @@
 lazydocs \
     --output-path="./docs/en/api-reference" \
     --overview-file="index.md" \
-    --src-base-url="https://github.com/andgineer/opensearch-log/blob/master/" \
-    src/opensearch_log
+    --src-base-url="https://github.com/andgineer/{{ cookiecutter.package_name }}/blob/master/" \
+    src/{{ cookiecutter.package_name|replace('-', '_') }}
 
 cp -r ./docs/en/api-reference ./docs/ru/api-reference

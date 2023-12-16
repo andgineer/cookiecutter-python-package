@@ -1,4 +1,4 @@
-# opensearch-log
+# {{ cookiecutter.package_name }}
 
 Python logging handler for direct and efficient log transmission to 
 OpenSearch. 
@@ -9,4 +9,4 @@ OpenSearch.
 
 # source code
 
-[sorokin.engineer/opensearch-log](https://github.com/andgineer/opensearch-log)
+[sorokin.engineer/{{ cookiecutter.package_name }}](https://github.com/andgineer/{{ cookiecutter.package_name }})

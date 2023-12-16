@@ -1,11 +1,11 @@
 # yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
-site_name: opensearch_log
-site_url: https://andgineer.github.io/opensearch-log
+site_name: {{ cookiecutter.package_name|replace('-', '_') }}
+site_url: https://andgineer.github.io/{{ cookiecutter.package_name }}
 site_author: Andrey Sorokin
 
 # Repository
-repo_name: opensearch_log
-repo_url: https://github.com/andgineer/opensearch-log
+repo_name: {{ cookiecutter.package_name|replace('-', '_') }}
+repo_url: https://github.com/andgineer/{{ cookiecutter.package_name }}
 edit_uri: edit/master/docs
 docs_dir: 'en'
 site_dir: '../site/en'
@@ -33,8 +33,8 @@ theme:
 extra:
   alternate:
     - name: English
-      link: /opensearch_log/en/
+      link: /{{ cookiecutter.package_name|replace('-', '_') }}/en/
       lang: en
     - name: Russian
-      link: /opensearch_log/ru/
+      link: /{{ cookiecutter.package_name|replace('-', '_') }}/ru/
       lang: ru
