@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/andgineer/opensearch-log/workflows/ci/badge.svg)](https://github.com/andgineer/opensearch-log/actions)
+[![Build Status](https://github.com/andgineer/opensearch-log/workflows/CI/badge.svg)](https://github.com/andgineer/opensearch-log/actions)
 [![Coverage](https://raw.githubusercontent.com/andgineer/opensearch-log/python-coverage-comment-action-data/badge.svg)](https://htmlpreview.github.io/?https://github.com/andgineer/opensearch-log/blob/python-coverage-comment-action-data/htmlcov/index.html)
 # opensearch-log
 
@@ -31,5 +31,6 @@ Do not forget to run `. ./activate.sh`.
 # Scripts
     make help
 
-# Codecov
-[Report](https://app.codecov.io/gh/andgineer/opensearch-log/tree/master/src%2Fopensearch-log)
+## Coverage report
+* [Codecov](https://app.codecov.io/gh/andgineer/opensearch-log/tree/main/src%2Fopensearch_log)
+* [Coveralls](https://coveralls.io/github/andgineer/opensearch-log)

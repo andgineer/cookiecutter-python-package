@@ -9,7 +9,7 @@ description = "A Python logging handler for efficient and reliable direct log tr
 keywords = [ "opensearch", "log", "log-handler",]
 classifiers = [ "Programming Language :: Python :: 3", "License :: OSI Approved :: MIT License", "Operating System :: OS Independent",]
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dependencies = []
 [[project.authors]]
 name = "Andrey Sorokin"
