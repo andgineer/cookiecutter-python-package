@@ -23,15 +23,21 @@ fi
 
 # virtual env
 if [[ ! -d ${VENV_FOLDER} ]] ; then
+    unset CONDA_PREFIX  # if conda is installed, it will mess with the virtual env
+
     echo -e $CYAN"Creating virtual environment for python in ${VENV_FOLDER}"$NC
-    if virtualenv ${VENV_FOLDER} --python=${PYTHON}; then
-      python -m venv  ${VENV_FOLDER}
+    if uv venv ${VENV_FOLDER} --python=${PYTHON}; then
+      START_TIME=$(date +%s)
+
       . ${VENV_FOLDER}/bin/activate
-      python -m pip install --upgrade pip
-      python -m pip install -r requirements.dev.txt
-      python -m pip install -e .
+      uv pip install --upgrade pip
+      uv pip install -r requirements.dev.txt
+      uv pip install -e .
+
+      END_TIME=$(date +%s)
+      echo "Environment created in $((END_TIME - $START_TIME)) seconds"
     else
-      echo -e $RED"Error to create virtual env. Do you have virtualenv installed?"$NC
+      echo -e $RED"Error to create virtual env. Do you have Astral's UV installed ( https://pypi.org/project/uv/ )?"$NC
       return 1
     fi
 else
