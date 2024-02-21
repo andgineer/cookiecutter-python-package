@@ -5,8 +5,10 @@ This Cookiecutter template generates a Python project structured for package dev
 ## Features
 
 - **Python Package Setup**: Scaffold for creating a Python package.
+- **Virtual environment**: Convenient creation/activation with a single command. Use blazingly fast `uv`.
 - **GitHub Actions for CI**: Automated workflows for Continuous Integration.
 - **Publishing to PyPI**: Workflow for packaging and distributing your project on [PyPI](https://pypi.org/).
+- **Static Analysis**: Pre-configured Flake8, Black, and MyPy checks. Use incredibly fast `ruff`.
 - **Coverage Reporting**: Code coverage analysis with results published to a separate branch, integrated with Coveralls/Codecov.
 - **Badges in README**: Status badges for CI and coverage.
 - **Pre-commit Hooks**: Pre-configured hooks for code formatting and MyPy checks.
