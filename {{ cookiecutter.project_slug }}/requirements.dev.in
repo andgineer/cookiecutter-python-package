@@ -19,3 +19,5 @@ mkdocs-awesome-pages-plugin
 pip-tools
 hatchling
 toml
+uv
+

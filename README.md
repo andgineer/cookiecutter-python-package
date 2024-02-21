@@ -63,6 +63,7 @@ See link in README.md.
 
 ### Dependencies
 To create virtualenv run `. ./activate.sh` in the root of the project (note the first ".").
+You need [uv](https://pypi.org/project/uv/) installed for this.
 
 If you change dependencies in `requirements.in` or `requirements.dev.in` run `make reqs` to update 
 `requirements.txt`, `requirements.dev.txt` and `pyproject.toml`. 
