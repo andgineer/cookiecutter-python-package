@@ -32,6 +32,16 @@ Once Cookiecutter is installed, generate your project:
 
 Follow the prompts to enter your project details.
 
+My personal preference is to create empty project first on GitHub and then clone it to my local machine.
+Then without entering the project directory
+
+    cookiecutter gh:andgineer/cookiecutter-python-package --overwrite-if-exists
+
+Of course the project name you enter should be the same as the name of the repository on GitHub.
+
+This way it creates all the boilerplate in the project directory but leave `.git/` you just cloned intact.
+You can then push the boilerplate created by cookiecutter back to the GitHub.
+
 ## Post-Generation Setup
 After generating your project, perform the following steps:
 
