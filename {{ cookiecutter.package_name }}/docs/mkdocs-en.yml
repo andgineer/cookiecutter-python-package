@@ -33,8 +33,8 @@ theme:
 extra:
   alternate:
     - name: English
-      link: /{{ cookiecutter.project_slug }}/en/
+      link: /{{ cookiecutter.package_name }}/en/
       lang: en
     - name: Russian
-      link: /{{ cookiecutter.project_slug }}/ru/
+      link: /{{ cookiecutter.package_name }}/ru/
       lang: ru
