@@ -4,6 +4,7 @@
 #
 #    pip-compile requirements.dev.in
 #
+-e .
 astroid==3.0.2
     # via pylint
 babel==2.14.0

@@ -40,9 +40,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.dev.txt
-        python -m pip install -e .
+        python -m pip install --upgrade pip uv
+        uv pip install -r requirements.dev.txt --python=${{ matrix.python-version }}
 
     - name: Test with pytest
       run: ${{ env.PYTEST_CMD }}
