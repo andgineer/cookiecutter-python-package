@@ -49,8 +49,7 @@ jobs:
       if: ${{ runner.os != 'Windows' }}
       run: curl -LsSf https://astral.sh/uv/install.sh | sh
     - name: Install dependencies
-      run: |
-        uv pip install -r requirements.dev.txt --python=${{ matrix.python-version }}
+      run: uv pip install -r requirements.dev.txt --python=${{ matrix.python-version }}
 
     - name: Test with pytest
       run: ${{ env.PYTEST_CMD }}
