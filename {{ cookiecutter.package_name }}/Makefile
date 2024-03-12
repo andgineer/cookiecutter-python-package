@@ -30,13 +30,15 @@ reqs:
 docs:
 	./scripts/docstrings.sh
 	open -a "Google Chrome" http://127.0.0.1:8000/{{ cookiecutter.package_name }}/
-	mkdocs serve -f docs/mkdocs-en.yml
+	scripts/docs-render-config.sh en
+	mkdocs serve -f docs/_mkdocs.yml
 
 .HELP: docs-ru  ## Docs preview Russian
 docs-ru:
 	./scripts/docstrings.sh
 	open -a "Google Chrome" http://127.0.0.1:8000/{{ cookiecutter.package_name }}/
-	mkdocs serve -f docs/mkdocs-ru.yml
+	scripts/docs-render-config.sh ru
+	mkdocs serve -f docs/_mkdocs.yml
 
 .HELP: help  ## Display this message
 help:

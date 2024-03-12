@@ -7,13 +7,13 @@ site_author: Andrey Sorokin
 repo_name: {{ cookiecutter.project_slug }}
 repo_url: https://github.com/andgineer/{{ cookiecutter.package_name }}
 edit_uri: edit/master/docs
-docs_dir: 'en'
-site_dir: '../site/en'
+docs_dir: 'src/LANGUAGE'
+site_dir: '../site/SITE_PREFIX'
 
 plugins:
   - awesome-pages
   - search:
-      lang: en
+      lang: LANGUAGE
 
 markdown_extensions:
   - abbr
@@ -33,8 +33,8 @@ theme:
 extra:
   alternate:
     - name: English
-      link: /{{ cookiecutter.package_name }}/en/
+      link: /{{ cookiecutter.package_name }}/
       lang: en
-    - name: Russian
+    - name: Русский
       link: /{{ cookiecutter.package_name }}/ru/
       lang: ru
