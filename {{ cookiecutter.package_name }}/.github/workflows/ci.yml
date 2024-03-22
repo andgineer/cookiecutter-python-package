@@ -19,7 +19,12 @@ jobs:
     env:
       PRIMARY_PYTHON_VERSION: '3.11'
       PRIMARY_PLATFORM: 'ubuntu-latest'
-      PYTEST_CMD: "python -m pytest --junitxml=pytest.xml --cov-report=term-missing:skip-covered --cov=src tests/"
+      PYTEST_CMD: >
+        python -m pytest 
+        --junitxml=pytest.xml 
+        --cov-report=term-missing:skip-covered 
+        --cov=src 
+        tests/
     runs-on: ${{ matrix.platform }}
     permissions:
       # Gives the action the necessary permissions for publishing new
