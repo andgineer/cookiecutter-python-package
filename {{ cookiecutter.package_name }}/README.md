@@ -18,3 +18,5 @@ Do not forget to run `. ./activate.sh`.
 ## Coverage report
 * [Codecov](https://app.codecov.io/gh/andgineer/{{ cookiecutter.package_name }}/tree/main/src%2F{{ cookiecutter.project_slug }})
 * [Coveralls](https://coveralls.io/github/andgineer/{{ cookiecutter.package_name }})
+
+> Created with cookiecutter using [template](https://github.com/andgineer/cookiecutter-python-package)
