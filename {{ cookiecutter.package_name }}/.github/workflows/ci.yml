@@ -14,10 +14,10 @@ jobs:
   build:
     strategy:
       matrix:
-        python-version: [3.9, "3.10", 3.11]
+        python-version: [3.9, "3.10", 3.11, 3.12]
         platform: [ubuntu-latest, macos-latest, windows-latest]
     env:
-      PRIMARY_PYTHON_VERSION: '3.11'
+      PRIMARY_PYTHON_VERSION: '3.12'
       PRIMARY_PLATFORM: 'ubuntu-latest'
       PYTEST_CMD: >
         python -m pytest 
