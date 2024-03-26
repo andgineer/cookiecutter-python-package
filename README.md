@@ -61,7 +61,6 @@ Enable GitHub Pages for your project's documentation:
 - In the 'Pages' section, set the source to the gh-pages branch.
 
 ### Optional Configurations
-- Codecov Token: Add CODECOV_TOKEN to your GitHub Secrets for Codecov integration.
 - Coveralls Integration: Activate your project on Coveralls.
 
 ## How to use generated project

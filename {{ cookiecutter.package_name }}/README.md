@@ -6,7 +6,7 @@
 
 # Documentation
 
-[{{ cookiecutter.package_name|replace('-', ' ')|title }}](https://andgineer.github.io/{{ cookiecutter.package_name }}/en/)
+[{{ cookiecutter.package_name|replace('-', ' ')|title }}](https://andgineer.github.io/{{ cookiecutter.package_name }}/)
 
 # Developers
 
