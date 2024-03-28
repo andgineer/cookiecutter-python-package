@@ -40,3 +40,10 @@
 ```bash
 pipx install {{ cookiecutter.package_name }}
 ```
+
+### Дополнительно
+
+Чтобы увидеть все параметры, используйте: 
+```bash
+{{ cookiecutter.package_name }} --help
+```

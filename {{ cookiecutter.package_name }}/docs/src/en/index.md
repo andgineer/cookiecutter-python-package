@@ -39,3 +39,11 @@ In the terminal (command prompt), execute:
 ```bash
 pipx install {{ cookiecutter.package_name }}
 ```
+
+### Advanced
+
+Use 
+```bash
+{{ cookiecutter.package_name }} --help
+```
+to see all available options.
