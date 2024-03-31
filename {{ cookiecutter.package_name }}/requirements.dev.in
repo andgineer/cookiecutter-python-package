@@ -8,7 +8,7 @@ pytest-cov
 pre-commit
 mypy
 pylint
-pydocstyle
+
 
 # docs
 mkdocstrings[python]

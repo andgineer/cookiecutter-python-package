@@ -3,7 +3,6 @@ exclude: |
         tests/|
         site/|
         docs/|
-        pyproject.toml|
         __about__.py
     )
 repos:
