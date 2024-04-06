@@ -11,4 +11,4 @@ pytest.xml
 pytest-coverage.txt
 *.py-e
 .venv/
-**/docs/_mkdocs.yml*
+**/_mkdocs.yml*
