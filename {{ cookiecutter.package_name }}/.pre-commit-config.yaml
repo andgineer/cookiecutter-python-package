@@ -31,10 +31,12 @@ repos:
           --cache-fine-grained
           --no-namespace-packages
         files: \.py$
+        exclude: tasks.py
         language: python
 
       - id: pylint
         name: Pylint
         entry: pylint
         files: \.py$
+        exclude: tasks.py
         language: python

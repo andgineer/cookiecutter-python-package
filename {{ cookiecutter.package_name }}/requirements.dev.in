@@ -20,5 +20,5 @@ mkdocs-awesome-pages-plugin
 -e .
 hatchling
 toml
-
+invoke
 
