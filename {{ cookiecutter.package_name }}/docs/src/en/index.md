@@ -1,4 +1,4 @@
-# {{ cookiecutter.package_name }}
+# Installation
 
 {{ cookiecutter.package_description }} 
 
