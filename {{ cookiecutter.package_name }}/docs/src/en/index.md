@@ -47,3 +47,6 @@ Use
 {{ cookiecutter.package_name }} --help
 ```
 to see all available options.
+
+![About](images/about.jpg)
+[About][{{ cookiecutter.project_slug }}.__about__]
