@@ -1,4 +1,4 @@
-from {{ cookiecutter.project_slug }}.__about__ import __version__
+from {{ cookiecutter.project_slug }} import __version__
 from {{ cookiecutter.project_slug }}.main import {{ cookiecutter.project_slug }}
 from click.testing import CliRunner
 

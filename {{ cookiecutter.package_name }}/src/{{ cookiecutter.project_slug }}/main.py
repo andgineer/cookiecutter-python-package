@@ -4,7 +4,7 @@ from pathlib import Path
 
 import rich_click as click
 
-from {{ cookiecutter.project_slug }}.__about__ import __version__
+from {{ cookiecutter.project_slug }} import __version__
 
 click.rich_click.USE_MARKDOWN = True
 
