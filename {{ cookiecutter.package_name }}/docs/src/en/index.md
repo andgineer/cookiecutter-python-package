@@ -10,8 +10,7 @@
 === "MacOS"
     In the terminal, execute:
     ```bash
-    brew install pipx
-    pipx ensurepath
+    --8<-- "install_pipx_macos.sh"
     ```
 
 === "Linux"
