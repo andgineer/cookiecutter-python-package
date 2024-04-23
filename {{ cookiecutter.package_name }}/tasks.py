@@ -1,3 +1,4 @@
+import shutil
 import sys
 
 from invoke import task, Context, Collection
@@ -44,7 +45,7 @@ def ver_task_factory(version_type: str):
 def compile_requirements(c: Context):
     "Convert requirements.in to requirements.txt and requirements.dev.txt."
     start_time = subprocess.check_output(["date", "+%s"]).decode().strip()
-    c.run("uv pip compile requirements.in --output-file=requirements.txt --upgrade")
+    c.run("uv pip compile requirements.in --output-file=requirements.txt --upgrade")  # --refresh-package
     reqs_time = subprocess.check_output(["date", "+%s"]).decode().strip()
     c.run("uv pip compile requirements.dev.in --output-file=requirements.dev.txt --upgrade")
     end_time = subprocess.check_output(["date", "+%s"]).decode().strip()
@@ -67,6 +68,10 @@ def docs_task_factory(language: str):
         """Docs preview for the language specified."""
         c.run("open -a 'Google Chrome' http://127.0.0.1:8000/{{ cookiecutter.package_name }}/")
         c.run(f"scripts/docs-render-config.sh {language}")
+        if language != "en":
+            shutil.rmtree(f"./docs/src/{language}/images", ignore_errors=True)
+            shutil.copytree("./docs/src/en/images", f"./docs/src/{language}/images")
+            shutil.copy("./docs/src/en/reference.md", f"./docs/src/{language}/reference.md")
         c.run("mkdocs serve -f docs/_mkdocs.yml")
 
     return docs
