@@ -30,7 +30,7 @@ ver-release:
 reqs:
 	pre-commit autoupdate
 	bash ./scripts/compile_requirements.sh
-	uv pip install -r requirements.dev.txt
+	{% if cookiecutter.uv %}uv {% endif %}pip install -r requirements.dev.txt
 
 .PHONY: docs # mark as phony so it always runs even we have a docs folder
 .HELP: docs  ## Docs preview for the language specified (bg de en es fr ru)

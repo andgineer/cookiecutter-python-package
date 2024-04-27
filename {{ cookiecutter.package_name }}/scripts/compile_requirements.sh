@@ -6,10 +6,10 @@ unset CONDA_PREFIX  # if conda is installed, it will mess with the virtual env
 
 START_TIME=$(date +%s)
 
-uv pip compile requirements.in --output-file=requirements.txt  --upgrade
+{% if cookiecutter.uv %}uv pip compile{% else %}pip-compile{% endif %} requirements.in --output-file=requirements.txt  --upgrade
 REQS_TIME=$(date +%s)
 
-uv pip compile requirements.dev.in --output-file=requirements.dev.txt  --upgrade
+{% if cookiecutter.uv %}uv pip compile{% else %}pip-compile{% endif %} requirements.dev.in --output-file=requirements.dev.txt  --upgrade
 
 END_TIME=$(date +%s)
 

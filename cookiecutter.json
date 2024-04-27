@@ -3,5 +3,6 @@
     "project_slug": "{{ cookiecutter.package_name|replace('-', '_') }}",
     "package_description": "A short description of the package",
     "scripts": ["invoke", "make"],
-    "pyproject": true
+    "pyproject": true,
+    "uv": true
 }

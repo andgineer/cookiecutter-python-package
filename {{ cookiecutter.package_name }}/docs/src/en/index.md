@@ -1,7 +1,7 @@
 # Installation
 
 {{ cookiecutter.package_description }} 
-
+{% if cookiecutter.pyproject %}
 ## Installation
 
 ## Installing pipx
@@ -49,3 +49,4 @@ to see all available options.
 
 ![About](images/about.jpg)
 [About][{{ cookiecutter.project_slug }}.__about__]
+{% endif %}
