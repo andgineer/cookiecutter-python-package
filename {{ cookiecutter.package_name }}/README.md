@@ -13,6 +13,7 @@
 Do not forget to run `. ./activate.sh`.
 
 # Scripts
+{% if cookiecutter.scripts == "invoke" %}
 Install [invoke](https://docs.pyinvoke.org/en/stable/) preferably with [pipx](https://pypa.github.io/pipx/):
 
     pipx install invoke
@@ -24,6 +25,9 @@ For a list of available scripts run:
 For more information about a script run:
 
     invoke <script> --help
+{% else %}
+    make help
+{% endif %}
 
 ## Coverage report
 * [Codecov](https://app.codecov.io/gh/andgineer/{{ cookiecutter.package_name }}/tree/main/src%2F{{ cookiecutter.project_slug }})

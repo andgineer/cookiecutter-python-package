@@ -1,12 +1,12 @@
-"""Post generation hook to rename files and folders."""
 import os
-import shutil
 
+REMOVE_PATHS = [
+    '{% if cookiecutter.scripts == "make" %}tasks.py{% endif %}',
+    '{% if cookiecutter.scripts == "invoke" %}Makefile{% endif %}',
+    '{% if cookiecutter.scripts == "invoke" %}scripts/compile_requirements.sh{% endif %}',
+]
 
-def main():
-    """Rename files and folders."""
-    pass
-
-
-if __name__ == "__main__":
-    main()
+for path in REMOVE_PATHS:
+    path = path.strip()
+    if path and os.path.exists(path):
+        os.unlink(path) if os.path.isfile(path) else os.rmdir(path)

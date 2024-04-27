@@ -20,5 +20,6 @@ mkdocs-awesome-pages-plugin
 -e .
 hatchling
 toml
+{% if cookiecutter.scripts == "invoke" %}
 invoke
-
+{% endif %}
