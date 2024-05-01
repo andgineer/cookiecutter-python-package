@@ -4,5 +4,6 @@
     "package_description": "A short description of the package",
     "scripts": ["invoke", "make"],
     "pyproject": true,
-    "uv": true
+    "uv": true,
+    "typechecker": ["mypy", "pyright"]
 }

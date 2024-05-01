@@ -34,6 +34,18 @@ include = [ "README.md", "LICENSE.txt",]
 [tool.ruff]
 line-length = 99
 
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+reportMissingImports = true
+reportMissingModuleSource = false
+reportMissingTypeStubs = true
+
+include = ["src"]
+exclude = ["**/node_modules",
+    "**/__pycache__"
+]
+
 [tool.hatch.version]
 path = "src/{{ cookiecutter.project_slug }}/__about__.py"
 

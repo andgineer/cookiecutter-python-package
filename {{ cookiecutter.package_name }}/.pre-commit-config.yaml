@@ -18,8 +18,16 @@ repos:
       # Run the formatter.
       - id: ruff-format
 
+{%if cookiecutter.typechecker == "pyright"}
+  - repo: https://github.com/RobertCraigie/pyright-python
+    rev: v1.1.360
+    hooks:
+      - id: pyright
+{% endif %}
+
   - repo: local
     hooks:
+{% if cookiecutter.typechecker == "mypy" %}
       - id: mypy
         name: mypy
         entry: |
@@ -35,6 +43,7 @@ repos:
         files: \.py$
         exclude: tasks.py
         language: python
+  {% endif %}
 
       - id: pylint
         name: Pylint
