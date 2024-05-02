@@ -12,6 +12,12 @@
 
 Do not forget to run `. ./activate.sh`.
 
+For work it need [uv](https://github.com/astral-sh/uv) installed.
+
+Use [pre-commit](https://pre-commit.com/#install) hooks for code quality:
+
+    pre-commit install
+
 # Scripts
 {% if cookiecutter.scripts == "invoke" %}
 Install [invoke](https://docs.pyinvoke.org/en/stable/) preferably with [pipx](https://pypa.github.io/pipx/):
