@@ -4,36 +4,34 @@
 #
 name: CI
 
+env:
+  PRIMARY_PYTHON_VERSION: '3.12'
+  PRIMARY_PLATFORM: 'ubuntu-latest'
+  PYTEST_CMD: >-
+    python -m pytest 
+    --junitxml=pytest.xml 
+    --cov-report=term-missing:skip-covered 
+    --cov=src
+    tests/
+
 on:
   push:
     branches: [ master, main ]
   pull_request:
     branches: [ master, main ]
 
+permissions:
+  pull-requests: write
+  contents: write
+
 jobs:
-  build:
+  # Test compatibility with the matrix of Python versions and platforms
+  matrix-build:
     strategy:
       matrix:
-        python-version: [3.9, "3.10", 3.11, 3.12]
+        python-version: ["3.10", 3.11, 3.12]
         platform: [ubuntu-latest, macos-latest, windows-latest]
-    env:
-      PRIMARY_PYTHON_VERSION: '3.12'
-      PRIMARY_PLATFORM: 'ubuntu-latest'
-      PYTEST_CMD: >
-        python -m pytest 
-        --junitxml=pytest.xml 
-        --cov-report=term-missing:skip-covered 
-        --cov=src 
-        tests/
     runs-on: ${{ matrix.platform }}
-    permissions:
-      # Gives the action the necessary permissions for publishing new
-      # comments in pull requests.
-      pull-requests: write
-      # Gives the action the necessary permissions for pushing data to the
-      # python-coverage-comment-action branch, and for editing existing
-      # comments (to avoid publishing multiple comments in the same PR)
-      contents: write
 
     steps:
     - uses: actions/checkout@v4
@@ -53,9 +51,57 @@ jobs:
     - name: Test with pytest
       run: ${{ env.PYTEST_CMD }}
 
+# Build with publishing Allure report, coverage report
+  primary-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ env.PRIMARY_PYTHON_VERSION }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PRIMARY_PYTHON_VERSION }}
+
+{% if cookiecutter.uv %}
+    - name: Install uv environment
+      uses: andgineer/uv-venv@v1
+{% endif %}
+    - name: Install dependencies
+      run: {% if cookiecutter.uv %}uv {% endif %}pip install -r requirements.dev.txt
+
+    - name: Test with pytest and Allure report
+      run: "${{ env.PYTEST_CMD }} --alluredir=./allure-results"
+
+    - name: Load Allure test report history
+      uses: actions/checkout@v4
+      if: always()
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages-dir
+
+    - name: Generate Allure test report
+      uses: andgineer/allure-report@v3.3
+      id: allure-report
+      if: always()
+      with:
+        allure-results: allure-results
+        website: gh-pages-dir
+        reports-site-path: builds/tests
+
+    - name: Publish Allure test report
+      uses: peaceiris/actions-gh-pages@v3
+      if: ${{ always() && (steps.allure-report.outcome == 'success') }}
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ${{ steps.allure-report.outputs.reports-site }}
+        destination_dir: ${{ steps.allure-report.outputs.reports-site-path }}
+
     - name: Coverage comment
       id: coverage_comment
-      if: ${{ matrix.python-version == env.PRIMARY_PYTHON_VERSION && matrix.platform == env.PRIMARY_PLATFORM }}
+      if: always()
       uses: py-cov-action/python-coverage-comment-action@v3
       with:
         GITHUB_TOKEN: ${{ github.token }}
@@ -70,7 +116,7 @@ jobs:
         path: python-coverage-comment-action.txt
 
     - name: Upload coverage data to coveralls.io
-      if: ${{ matrix.python-version == env.PRIMARY_PYTHON_VERSION && matrix.platform == env.PRIMARY_PLATFORM }}
+      if: always()
       uses: coverallsapp/github-action@v2
 
     - name: Upload Coverage to Codecov
