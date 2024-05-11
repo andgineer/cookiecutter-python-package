@@ -14,3 +14,4 @@ pytest-coverage.txt
 **/_mkdocs.yml*
 **/ru/images/
 **/ru/reference.md
+**/.setup-scripts/
