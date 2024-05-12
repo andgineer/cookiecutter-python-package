@@ -10,6 +10,7 @@ REMOVE_PATHS = [
     '{% if cookiecutter.pyproject or cookiecutter.typechecker == "mypy"%}scripts/pyrightconfig.json{% endif %}',
     '{% if cookiecutter.pyproject %}scripts/.ruff.toml{% endif %}',
     '{% if cookiecutter.typechecker == "pyright" %}scripts/.mypy.ini{% endif %}',
+    '{% if not cookiecutter.docker %}Dockerfile{% endif %}',
 ]
 
 for path in REMOVE_PATHS:
