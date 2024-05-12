@@ -6,6 +6,7 @@ ENV PYTHONPATH="$PYTHON_SOURCE:$PYTHONPATH"
 # Local-specific script to set up corporate proxy etc
 ARG SSL_CERT_FILE
 ENV SSL_CERT_FILE=$SSL_CERT_FILE
+ENV REQUESTS_CA_BUNDLE=$SSL_CERT_FILE
 COPY .setup-scripts* /.setup-scripts
 RUN /.setup-scripts/debian.sh || true
 
