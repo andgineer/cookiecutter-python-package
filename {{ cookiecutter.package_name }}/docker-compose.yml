@@ -1,0 +1,11 @@
+services:
+
+  backend:
+    build:
+      context: ./
+      dockerfile: docker/backend/Dockerfile
+    depends_on:
+    restart: always
+    ports:
+    environment:
+      - SSL_CERT_FILE=/usr/local/share/ca-certificates/custom_cacert.crt

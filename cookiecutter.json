@@ -6,5 +6,5 @@
     "pyproject": true,
     "uv": true,
     "typechecker": ["mypy", "pyright"],
-    "docker": true,
+    "docker": false
 }
