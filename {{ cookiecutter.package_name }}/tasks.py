@@ -22,11 +22,11 @@ def get_allowed_doc_languages():
 ALLOWED_DOC_LANGUAGES = get_allowed_doc_languages()
 ALLOWED_VERSION_TYPES = ["release", "bug", "feature"]
 
-{ % if cookiecutter.docker %}
+{% if cookiecutter.docker %}
 DOCKER_NAME = "{{ cookiecutter.package_name }}"  # default name for Docker image
 DOCKER_FOLDERS = {"": "."}  # <image name>: <build context folder>
 BUILD_TASK_PREFIX = 'build'
-{ % endif %}
+{% endif %}
 
 @task
 def version(c: Context):
@@ -96,7 +96,7 @@ def pre(c):
     """Run pre-commit checks"""
     c.run("pre-commit run --verbose --all-files")
 
-{ % if cookiecutter.docker %}
+{% if cookiecutter.docker %}
 def docker_build_task_factory(name, target_dir):
     @task
     def docker_build(c):
@@ -117,15 +117,15 @@ def docker_build_task_factory(name, target_dir):
                 pass
 
     return docker_build
-{ % endif %}
+{% endif %}
 
     namespace = Collection.from_module(sys.modules[__name__])
 for name in ALLOWED_VERSION_TYPES:
     namespace.add_task(ver_task_factory(name), name=f"ver-{name}")
 for name in ALLOWED_DOC_LANGUAGES:
     namespace.add_task(docs_task_factory(name), name=f"docs-{name}")
-{ % if cookiecutter.docker %}
+{% if cookiecutter.docker %}
 for name, folder in DOCKER_FOLDERS.items():
     task_name = f"{BUILD_TASK_PREFIX}-{name}" if name else BUILD_TASK_PREFIX
     namespace.add_task(docker_build_task_factory(task_name, folder), name=task_name)
-{ % endif %}
+{% endif %}

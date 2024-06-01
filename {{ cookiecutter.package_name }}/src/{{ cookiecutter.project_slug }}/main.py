@@ -9,14 +9,13 @@ from {{ cookiecutter.project_slug }} import __version__
 click.rich_click.USE_MARKDOWN = True
 OUTPUT_FILE_DEFAULT = "output"
 
+
 @click.command()
 @click.version_option(version=__version__, prog_name="{{ cookiecutter.package_name }}")
 @click.argument("input_file", type=click.Path(exists=True))
 @click.argument("output_file", type=click.Path(), required=False)
 @click.option("--force", is_flag=True, help="Overwrite the output file if it exists.")
-def {{ cookiecutter.project_slug }}(
-    input_file: str, output_file: str, force: bool
-) -> None:
+def {{ cookiecutter.project_slug }}(input_file: str, output_file: str, force: bool) -> None:
     """
     `INPUT_FILE` to `OUTPUT_FILE`.
     """
