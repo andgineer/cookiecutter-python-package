@@ -40,13 +40,13 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-
+{% endraw %}
 {% if cookiecutter.uv %}
     - name: Install uv environment
       uses: andgineer/uv-venv@v1
 {% endif %}
     - name: Install dependencies
-      run: {% if cookiecutter.uv %}uv {% endif %}pip install -r requirements.dev.txt
+      run: {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install -r requirements.dev.txt
 
     - name: Test with pytest
       run: ${{ env.PYTEST_CMD }}

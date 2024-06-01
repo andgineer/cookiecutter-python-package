@@ -18,6 +18,7 @@ cfgv==3.4.0
 charset-normalizer==3.3.2
     # via requests
 click==8.1.7
+rich-click==1.7.4
     # via
     #   mkdocs
     #   typer

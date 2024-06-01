@@ -27,11 +27,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PRIMARY_PYTHON_VERSION  }}
-      - run: |
 {% endraw %}
-          {% if cookiecutter.uv %}
-          pip install uv
-          {% endif %}
+{% if cookiecutter.uv %}
+      - name: Install uv environment
+        uses: andgineer/uv-venv@v1
+{% endif %}
+      - run: |
           {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install ghp-import -r requirements.dev.txt --python=${{ env.PRIMARY_PYTHON_VERSION }}
       - run: ./scripts/build-docs.sh
       - run: |
