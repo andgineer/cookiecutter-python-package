@@ -7,6 +7,7 @@
 -e .
 astroid==3.0.2
     # via pylint
+allure-pytest==2.13.5
 babel==2.14.0
     # via mkdocs-material
 bracex==2.4
