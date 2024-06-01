@@ -62,14 +62,14 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ env.PRIMARY_PYTHON_VERSION }}
-
+{% endraw %}
 {% if cookiecutter.uv %}
     - name: Install uv environment
       uses: andgineer/uv-venv@v1
 {% endif %}
     - name: Install dependencies
       run: {% if cookiecutter.uv %}uv {% endif %}pip install -r requirements.dev.txt
-
+{% raw %}
     - name: Test with pytest and Allure report
       run: "${{ env.PYTEST_CMD }} --alluredir=./allure-results"
 

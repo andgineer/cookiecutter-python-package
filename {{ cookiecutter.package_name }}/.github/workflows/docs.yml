@@ -28,10 +28,11 @@ jobs:
         with:
           python-version: ${{ env.PRIMARY_PYTHON_VERSION  }}
       - run: |
+{% endraw %}
           {% if cookiecutter.uv %}
           pip install uv
           {% endif %}
-          {% if cookiecutter.uv %}uv {% endif %}pip install ghp-import -r requirements.dev.txt --python=${{ env.PRIMARY_PYTHON_VERSION }}
+          {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install ghp-import -r requirements.dev.txt --python=${{ env.PRIMARY_PYTHON_VERSION }}
       - run: ./scripts/build-docs.sh
       - run: |
           ghp-import --no-jekyll --push --force site

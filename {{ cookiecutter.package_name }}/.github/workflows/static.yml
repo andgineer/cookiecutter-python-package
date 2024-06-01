@@ -23,6 +23,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PRIMARY_PYTHON_VERSION  }}
+{% endraw %}
 {% if cookiecutter.uv %}
       - name: Install uv environment
         uses: andgineer/uv-venv@v1
@@ -30,4 +31,3 @@ jobs:
       - run: |
           {% if cookiecutter.uv %}uv {% endif %}pip install pip -r requirements.dev.txt
           pre-commit run --verbose --all-files
-{% endraw %}
