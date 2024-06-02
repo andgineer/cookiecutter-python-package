@@ -119,7 +119,7 @@ def docker_build_task_factory(name, target_dir):
     return docker_build
 {% endif %}
 
-    namespace = Collection.from_module(sys.modules[__name__])
+namespace = Collection.from_module(sys.modules[__name__])
 for name in ALLOWED_VERSION_TYPES:
     namespace.add_task(ver_task_factory(name), name=f"ver-{name}")
 for name in ALLOWED_DOC_LANGUAGES:

@@ -24,6 +24,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Checkout gh-pages to backup Allure test reports
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ env.PRIMARY_PYTHON_VERSION  }}
@@ -37,4 +44,12 @@ jobs:
       - run: ./scripts/build-docs.sh
       - run: |
           ghp-import --no-jekyll --push --force site
+
+      - name: Restore Allure test reports folder
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: gh-pages/builds
+          destination_dir: builds
 {% endraw %}
