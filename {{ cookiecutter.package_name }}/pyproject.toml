@@ -49,5 +49,5 @@ exclude = ["**/node_modules",
 [tool.hatch.version]
 path = "src/{{ cookiecutter.project_slug }}/__about__.py"
 
-#[project.scripts]
-#{{ cookiecutter.package_name }} = "{{ cookiecutter.project_slug }}.main:{{ cookiecutter.project_slug }}"
+[project.scripts]
+{{ cookiecutter.package_name }} = "{{ cookiecutter.project_slug }}.main:{{ cookiecutter.project_slug }}"
