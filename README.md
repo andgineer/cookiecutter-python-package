@@ -63,6 +63,10 @@ Enable GitHub Pages for your project's documentation:
 
 ### Optional Configurations
 - Coveralls Integration: Activate your project on Coveralls.
+- Codecove: 
+press `Configure` on appropriate project on [codecov.io](https://app.codecov.io/gh/andgineer). 
+activate the project in the codecov settings.
+given on the page `CODECOV_TOKEN` add to GitHub Secrets.
 
 ## How to use generated project
 

@@ -18,6 +18,11 @@ Use [pre-commit](https://pre-commit.com/#install) hooks for code quality:
 
     pre-commit install
 
+
+## Allure test report
+
+* [Allure report](https://andgineer.github.io/{{ cookiecutter.package_name }}/builds/tests/)
+
 # Scripts
 {% if cookiecutter.scripts == "invoke" %}
 Install [invoke](https://docs.pyinvoke.org/en/stable/) preferably with [pipx](https://pypa.github.io/pipx/):
