@@ -8,6 +8,15 @@
 
 [{{ cookiecutter.package_name|replace('-', ' ')|title }}](https://andgineer.github.io/{{ cookiecutter.package_name }}/)
 
+{% if cookiecutter.docker %}
+## Start in Docker
+You need to have [Docker](https://docs.docker.com/get-docker/) installed.
+
+    docker start {{ cookiecutter.package_name }} > null 2>&1 || docker run -d -p 6100:8000 --name lexiflux andgineer/{{ cookiecutter.package_name }}
+
+Open the {{ cookiecutter.package_name }} at http://localhost:6100
+{% endif %}
+
 # Developers
 
 Do not forget to run `. ./activate.sh`.
@@ -17,7 +26,6 @@ For work it need [uv](https://github.com/astral-sh/uv) installed.
 Use [pre-commit](https://pre-commit.com/#install) hooks for code quality:
 
     pre-commit install
-
 
 ## Allure test report
 
