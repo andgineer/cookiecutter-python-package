@@ -11,6 +11,7 @@ Use
 ```
 to see all available options.
 
-![About](images/about.jpg)
-[About][{{ cookiecutter.project_slug }}.__about__]
+!!! info "About"
+    ![About](images/about.jpg)
+    [About][{{ cookiecutter.project_slug }}.__about__]
 {% endif %}
