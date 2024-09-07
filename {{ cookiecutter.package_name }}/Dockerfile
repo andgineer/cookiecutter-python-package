@@ -1,4 +1,4 @@
-FROM andgineer/python-base
+FROM andgineer/lean-python
 
 ENV PYTHON_SOURCE=/app
 ENV PYTHONPATH="$PYTHON_SOURCE:$PYTHONPATH"
@@ -14,7 +14,7 @@ COPY .setup-scripts* /.setup-scripts
 RUN /.setup-scripts/debian.sh || true
 
 COPY requirements.txt /requirements.txt
-RUN pip install -r /requirements.txt
+RUN uv pip install -r /requirements.txt
 COPY src/ $PYTHON_SOURCE/
 
 WORKDIR $PYTHON_SOURCE
