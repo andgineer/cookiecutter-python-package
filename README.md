@@ -68,6 +68,8 @@ press `Configure` on appropriate project on [codecov.io](https://app.codecov.io/
 activate the project in the codecov settings.
 given on the page `CODECOV_TOKEN` add to GitHub Secrets.
 
+Alternatively you can use `Global upload token` in settings - it will work for all projects.
+
 ## How to use generated project
 
 ### Docs
