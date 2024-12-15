@@ -34,7 +34,7 @@ jobs:
 {% endraw %}
 {% if cookiecutter.uv %}
     - name: Install uv environment
-      uses: andgineer/uv-venv@v1
+      uses: andgineer/uv-venv@v3
 {% endif %}
     - name: Install build dependencies
       run: {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install build --python=${{ env.PRIMARY_PYTHON_VERSION }}
