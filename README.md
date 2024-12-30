@@ -13,7 +13,7 @@ This Cookiecutter template generates a Python project structured for package dev
 - **Coverage Reporting**: Code coverage analysis with results published to a separate branch, integrated with Coveralls/Codecov.
 - **Badges in README**: Status badges for CI and coverage.
 - **Pre-commit Hooks**: Pre-configured hooks for code formatting and MyPy checks.
-- **Dependency Management**: Using pip-tools with automated updates in `pyproject.toml`.
+- **Dependency Management**: Using pip-tools with automated updates in `pyproject.toml` or using `uv lock`.
 - **Version Management**: Makefile commands for package version management.
 - **Documentation**: Multilanguage documentation with MkDocs Material, published on GitHub Pages.
 
