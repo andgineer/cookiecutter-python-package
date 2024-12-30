@@ -24,10 +24,14 @@ jobs:
         with:
           python-version: ${{ env.PRIMARY_PYTHON_VERSION  }}
 {% endraw %}
-{% if cookiecutter.uv %}
+{% if cookiecutter.uv or cookiecutter.dependencies == "uv" %}
       - name: Install uv environment
         uses: andgineer/uv-venv@v3
 {% endif %}
-      - run: |
-          {% if cookiecutter.uv %}uv {% endif %}pip install pip -r requirements.dev.txt
-          pre-commit run --verbose --all-files
+      - name: Install build dependencies
+{% if cookiecutter.dependencies == "uv" %}
+        run: uv sync --frozen
+{% else %}
+        {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install build --python=${{ env.PRIMARY_PYTHON_VERSION }}
+{% endif %}
+      - run: pre-commit run --verbose --all-files

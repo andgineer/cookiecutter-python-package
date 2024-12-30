@@ -20,7 +20,9 @@ black
 # build & reqs management
 -e .
 hatchling
+{% if cookiecutter.dependencies != "uv" %}
 toml
+{% endif %}
 {% if not cookiecutter.uv %}
 pip-tools
 {% endif %}

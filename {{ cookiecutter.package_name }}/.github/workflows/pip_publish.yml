@@ -32,16 +32,23 @@ jobs:
       with:
         python-version: '3.x'
 {% endraw %}
-{% if cookiecutter.uv %}
+{% if cookiecutter.uv or cookiecutter.dependencies == "uv" %}
     - name: Install uv environment
       uses: andgineer/uv-venv@v3
 {% endif %}
-    - name: Install build dependencies
-      run: {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install build --python=${{ env.PRIMARY_PYTHON_VERSION }}
+    - name: Install dependencies
+{% if cookiecutter.dependencies == "uv" %}
+      run: uv sync --frozen
+{% else %}
+      {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install build --python=${{ env.PRIMARY_PYTHON_VERSION }}
+{% endif %}
 
     - name: Build package
-      run: |
-        python -m build
+{% if cookiecutter.uv %}
+      run: uv build
+{% else %}
+      run: python -m build
+{% endif %}
 
     - name: Publish to PyPI
       if: startsWith(github.ref, 'refs/tags/v')

@@ -38,12 +38,19 @@ jobs:
         with:
           python-version: ${{ env.PRIMARY_PYTHON_VERSION  }}
 {% endraw %}
-{% if cookiecutter.uv %}
+{% if cookiecutter.uv or cookiecutter.dependencies == "uv" %}
       - name: Install uv environment
         uses: andgineer/uv-venv@v3
 {% endif %}
-      - run: |
-          {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install ghp-import -r requirements.dev.txt --python=${{ env.PRIMARY_PYTHON_VERSION }}
+      - name: Install dependencies
+{% if cookiecutter.dependencies == "uv" %}
+        run: |
+          uv sync --frozen
+          uv pip install ghp-import
+{% else %}
+        run: {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install ghp-import -r requirements.dev.txt --python=${{ env.PRIMARY_PYTHON_VERSION }}
+{% endif %}
+
       - run: ./scripts/build-docs.sh
       - run: |
           ghp-import --no-jekyll --push --force site

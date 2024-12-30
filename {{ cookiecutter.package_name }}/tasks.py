@@ -47,6 +47,7 @@ def ver_task_factory(version_type: str):
     return ver
 
 
+{% if cookiecutter.dependencies != "uv" %}
 @task
 def compile_requirements(c: Context):
     "Convert requirements.in to requirements.txt and requirements.dev.txt."
@@ -64,11 +65,16 @@ def compile_requirements(c: Context):
     {% endif %}
 
 
-@task(pre=[compile_requirements])
+@task(pre=[compile_requirements]){ % endif %}
 def reqs(c: Context):
     """Upgrade requirements including pre-commit."""
     c.run("pre-commit autoupdate")
+    {% if cookiecutter.dependencies == "uv" %}
+    c.run("uv lock --upgrade")
+    {% else %}
     c.run("{% if cookiecutter.uv %}uv {% endif %}pip install -r requirements.dev.txt")
+    {% endif %}
+    
 
 def docs_task_factory(language: str):
     @task

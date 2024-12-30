@@ -15,6 +15,12 @@ REMOVE_PATHS = [
     '{% if not cookiecutter.docker %}build.sh{% endif %}',
     '{% if not cookiecutter.docker %}compose.sh{% endif %}',
     '{% if not cookiecutter.docker %}docker-compose.yml{% endif %}',
+    '{% if cookiecutter.dependencies == "uv" %}scripts/compile_requirements.sh{% endif %}',
+    '{% if cookiecutter.dependencies == "uv" %}scripts/include_pyproject_requirements.py{% endif %}',
+    '{% if cookiecutter.dependencies == "uv" %}requirements.in{% endif %}',
+    '{% if cookiecutter.dependencies == "uv" %}requirements.txt{% endif %}',
+    '{% if cookiecutter.dependencies == "uv" %}requirements.dev.in{% endif %}',
+    '{% if cookiecutter.dependencies == "uv" %}requirements.dev.txt{% endif %}',
 ]
 
 for path in REMOVE_PATHS:
