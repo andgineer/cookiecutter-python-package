@@ -41,10 +41,8 @@ jobs:
       {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install build --python=${{ env.PRIMARY_PYTHON_VERSION }}{% endraw %}
 {% endif %}
 
-    - name: Build package
-{% if cookiecutter.uv %}
-      run: uv build
-{% else %}
+    - name: Build package{% if cookiecutter.uv %}
+      run: uv build{% else %}
       run: python -m build
 {% endif %}
 {% raw %}

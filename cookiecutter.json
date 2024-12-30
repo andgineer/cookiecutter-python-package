@@ -1,11 +1,22 @@
 {
     "package_name": "kebab-style name (e.g., 'my-awesome-package')",
     "project_slug": "{{ cookiecutter.package_name|replace('-', '_') }}",
-    "package_description": "A short description of the package",
+    "package_description": "",
     "scripts": ["invoke", "make"],
     "pyproject": true,
     "uv": true,
     "typechecker": ["mypy", "pyright"],
     "docker": false,
-    "dependencies": ["uv", "pip-tools"]
+    "dependencies": ["uv", "pip-tools"],
+    "__prompts__": {
+        "package_name": "What is the name of the package?",
+        "project_slug": "Pythonic name of the package",
+        "package_description": "A short description of the package",
+        "scripts": "Scripts runner",
+        "pyproject": "Use pyproject.toml? (otherwise setup.py)",
+        "uv": "Use astral's uv instead of pip+virtualenv",
+        "typechecker": "What type checker do you want to use?",
+        "docker": "Do you want to include a dockerhub support?",
+        "dependencies": "Dependencies versions are locked with"
+    }
 }
