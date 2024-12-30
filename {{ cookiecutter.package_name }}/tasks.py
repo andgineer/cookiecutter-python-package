@@ -65,7 +65,7 @@ def compile_requirements(c: Context):
     {% endif %}
 
 
-@task(pre=[compile_requirements]){ % endif %}
+@task(pre=[compile_requirements]){% endif %}
 def reqs(c: Context):
     """Upgrade requirements including pre-commit."""
     c.run("pre-commit autoupdate")
