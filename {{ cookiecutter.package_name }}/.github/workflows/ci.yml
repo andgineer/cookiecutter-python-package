@@ -45,12 +45,11 @@ jobs:
     - name: Install uv environment
       uses: andgineer/uv-venv@v1
 {% endif %}
-    - name: Install dependencies
-{% if cookiecutter.dependencies == "uv" %}
-      run: uv sync --frozen
-{% else %}
-      run: {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install -r requirements.dev.txt
+    - name: Install dependencies{% if cookiecutter.dependencies == "uv" %}
+      run: uv sync --frozen{% else %}
+      run: {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install -r requirements.dev.txt{% endraw %}
 {% endif %}
+{% raw %}
     - name: Test with pytest
       run: ${{ env.PYTEST_CMD }}
 
@@ -73,10 +72,8 @@ jobs:
     - name: Install uv environment
       uses: andgineer/uv-venv@v3
 {% endif %}
-    - name: Install dependencies
-{% if cookiecutter.dependencies == "uv" %}
-      run: uv sync --frozen
-{% else %}
+    - name: Install dependencies{% if cookiecutter.dependencies == "uv" %}
+      run: uv sync --frozen{% else %}
       run: {% if cookiecutter.uv %}uv {% endif %}pip install -r requirements.dev.txt
 {% endif %}
 {% raw %}

@@ -42,12 +42,10 @@ jobs:
       - name: Install uv environment
         uses: andgineer/uv-venv@v3
 {% endif %}
-      - name: Install dependencies
-{% if cookiecutter.dependencies == "uv" %}
+      - name: Install dependencies{% if cookiecutter.dependencies == "uv" %}
         run: |
           uv sync --frozen
-          uv pip install ghp-import
-{% else %}
+          uv pip install ghp-import{% else %}
         run: {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install ghp-import -r requirements.dev.txt --python=${{ env.PRIMARY_PYTHON_VERSION }}{% endraw %}
 {% endif %}
 {% raw %}
