@@ -32,6 +32,6 @@ jobs:
 {% if cookiecutter.dependencies == "uv" %}
         run: uv sync --frozen
 {% else %}
-        {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install build --python=${{ env.PRIMARY_PYTHON_VERSION }}
+        {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install build --python=${{ env.PRIMARY_PYTHON_VERSION }}{% endraw %}
 {% endif %}
       - run: pre-commit run --verbose --all-files

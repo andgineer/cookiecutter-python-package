@@ -48,9 +48,9 @@ jobs:
           uv sync --frozen
           uv pip install ghp-import
 {% else %}
-        run: {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install ghp-import -r requirements.dev.txt --python=${{ env.PRIMARY_PYTHON_VERSION }}
+        run: {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install ghp-import -r requirements.dev.txt --python=${{ env.PRIMARY_PYTHON_VERSION }}{% endraw %}
 {% endif %}
-
+{% raw %}
       - run: ./scripts/build-docs.sh
       - run: |
           ghp-import --no-jekyll --push --force site
