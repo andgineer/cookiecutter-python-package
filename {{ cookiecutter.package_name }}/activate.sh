@@ -43,10 +43,11 @@ if [[ ! -d ${VENV_FOLDER} ]] ; then
         if virtualenv ${VENV_FOLDER} --python=python${PRIMARY_PYTHON_VERSION}; then
             python -m venv ${VENV_FOLDER}
     {% endif %}
-            . ${VENV_FOLDER}/bin/activate
+            . ${VENV_FOLDER}/bin/activate{% if cookiecutter.dependencies == "uv" %}
+            uv sync --frozen{% else %}
             {% if cookiecutter.uv %}uv {% endif %}pip install --upgrade pip
             {% if cookiecutter.uv %}uv {% endif %}pip install -r requirements.dev.txt
-
+            {% endif %}
             END_TIME=$(date +%s)
             echo "Environment created in $((END_TIME - $START_TIME)) seconds"
         else
