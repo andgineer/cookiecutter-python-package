@@ -1,0 +1,9 @@
+name: fastapi-playground
+channels:
+  - conda-forge
+  - pkgs/main
+dependencies:
+  - click
+  - rich-click
+  - pip:
+

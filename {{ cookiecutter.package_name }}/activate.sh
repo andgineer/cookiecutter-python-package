@@ -2,8 +2,12 @@
 #
 # "Set-ups or/and activates development environment"
 #
-
+{% if cookiecutter.anaconda %}
+ENV_NAME="{{ cookiecutter.package_name }}"
+ENV_FILE="environment.yml"
+{% else %}
 VENV_FOLDER=".venv"
+{% endif %}
 PRIMARY_PYTHON_VERSION="3.12"  # sync with .github/workflows/docs.yml&static.yml
 
 RED='\033[1;31m'
@@ -21,7 +25,33 @@ if ! (return 0 2>/dev/null) ; then
     exit 1
 fi
 
-# virtual env
+{% if cookiecutter.anaconda %}
+if [[ ! -d "$HOME/anaconda3/" ]] ; then
+  echo -e $RED"(!) Please install anaconda https://docs.anaconda.com/anaconda/install/"$NC
+  return 1  # we are source'd so we cannot use exit
+fi
+
+source "$HOME/anaconda3/bin/activate"
+conda init
+
+if conda info --envs | grep "\b${ENV_NAME}\s"; then
+  echo -e $CYAN"activating environment ${ENV_NAME}"$NC
+else
+  if [[ -z $(conda list --name base | grep "^mamba ") ]]; then
+    echo -e $CYAN"..installing mamba.."$NC
+    conda install mamba>=2.0.5 --name base --channel conda-forge --yes
+  fi
+  echo -e $CYAN"..creating environment ${ENV_NAME} with ${PRIMARY_PYTHON_VERSION}.."$NC
+  conda create -y -n ${ENV_NAME} python="${PRIMARY_PYTHON_VERSION}"
+  conda activate ${ENV_NAME}
+  echo -e $CYAN"..installing dependencies from ${ENV_FILE}.."$NC
+  mamba env update --quiet -n ${ENV_NAME} -f ${ENV_FILE}
+  pip install -e .
+  conda deactivate  # RE-activate conda env so python will have access to conda installed deps
+fi
+
+conda activate ${ENV_NAME}
+{% else %}
 if [[ ! -d ${VENV_FOLDER} ]] ; then
     unset CONDA_PREFIX  # if conda is installed, it will mess with the virtual env
 
@@ -68,3 +98,4 @@ else
     echo -e $CYAN"Activating virtual environment ..."$NC
     . ${VENV_FOLDER}/bin/activate
 fi
+{% endif %}

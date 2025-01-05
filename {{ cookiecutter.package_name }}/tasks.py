@@ -68,10 +68,12 @@ def compile_requirements(c: Context):
 @task(pre=[compile_requirements]){% endif %}
 def reqs(c: Context):
     """Upgrade requirements including pre-commit."""
-    c.run("pre-commit autoupdate"){% if cookiecutter.dependencies == "uv" %}
+    c.run("pre-commit autoupdate"){% if cookiecutter.anaconda %}
+    c.run("mamba update --all")
+    c.run("mamba env export > environment.yml.tmp && grep -v 'prefix:' environment.yml.tmp > environment.yml && rm environment.yml.tmp"){% else %}{% if cookiecutter.dependencies == "uv" %}
     c.run("uv lock --upgrade"){% else %}
     c.run("{% if cookiecutter.uv %}uv {% endif %}pip install -r requirements.dev.txt")
-    {% endif %}
+    {% endif %}{% endif %}
     
 
 def docs_task_factory(language: str):
