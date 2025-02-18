@@ -9,14 +9,50 @@ exclude: |
     )
 repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    # Ruff version.
-    rev: v0.3.4
+    rev: v0.9.3
     hooks:
-      # Run the linter.
-      - id: ruff
-        args: [ --fix ]
-      # Run the formatter.
-      - id: ruff-format
+    - id: ruff
+      exclude: ^tests/
+      args: [
+          --fix,
+          --line-length=100,
+          --select=PL,    # All Pylint rules
+          --select=A001,  # Shadowing Python builtins
+          --select=ARG,   # Unused function arguments
+          --select=B,     # Bugbear rules (B002,B006,etc)
+          --select=BLE,   # Blind except
+          --select=C,     # Complexity
+          --select=COM,   # Comma placement
+          --select=E,     # pycodestyle errors
+          --select=F,     # Pyflakes
+          --select=G,     # Logging format
+          --select=I,     # Import ordering
+          --select=ISC,   # Implicit string concatenation
+          --select=N,     # Naming
+          --select=PIE,   # Misc rules
+          --select=Q,     # Quotes
+          --select=RET,   # Return statement
+          --select=S,     # Security
+          --select=SIM,   # Code simplification
+          --select=SLF,   # Private member access
+          --select=TID,   # Tidy imports
+          --select=TRY,   # Exception handling
+          --select=UP,    # Upgrade syntax
+          --select=W,     # Warnings
+          '--ignore=S101,G004,TRY003,TRY301,TRY400'  # Ignore docstring and `assert` detection
+      ]
+    - id: ruff
+      name: ruff-format-tests
+      files: ^tests/
+      args: [
+          --fix,
+          --line-length=99,
+          --exit-zero    # Don't fail on issues
+      ]
+    - id: ruff-format
+      args: [
+        --line-length=100
+      ]
 
 {% if cookiecutter.typechecker == "pyright" %}
   - repo: https://github.com/RobertCraigie/pyright-python
