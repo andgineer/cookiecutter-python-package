@@ -8,12 +8,20 @@ exclude: |
         __about__.py
     )
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+        exclude_types: [ python ]
+      - id: trailing-whitespace
+        exclude_types: [ python ]
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.9.3
     hooks:
-    - id: ruff
-      exclude: ^tests/
-      args: [
+      - id: ruff
+        exclude: ^tests/
+        args: [
           --fix,
           --line-length=100,
           --select=PL,    # All Pylint rules
@@ -40,19 +48,19 @@ repos:
           --select=UP,    # Upgrade syntax
           --select=W,     # Warnings
           '--ignore=S101,G004,TRY003,TRY301,TRY400'  # Ignore docstring and `assert` detection
-      ]
-    - id: ruff
-      name: ruff-format-tests
-      files: ^tests/
-      args: [
+        ]
+      - id: ruff
+        name: ruff-format-tests
+        files: ^tests/
+        args: [
           --fix,
           --line-length=99,
           --exit-zero    # Don't fail on issues
-      ]
-    - id: ruff-format
-      args: [
-        --line-length=100
-      ]
+        ]
+      - id: ruff-format
+        args: [
+          --line-length=100
+        ]
 
 {% if cookiecutter.typechecker == "pyright" %}
   - repo: https://github.com/RobertCraigie/pyright-python
