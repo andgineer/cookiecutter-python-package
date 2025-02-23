@@ -1,11 +1,6 @@
 exclude: |
     (?x)(
-        tests/|
-        site/|
-        docs/|
-        tasks.py|
-        scripts/|
-        __about__.py
+      .venv/
     )
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
