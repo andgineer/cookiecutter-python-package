@@ -1,6 +1,7 @@
 exclude: |
     (?x)(
-      .venv/
+      .venv/|
+      tasks.py
     )
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -80,7 +81,7 @@ repos:
           --cache-fine-grained
           --no-namespace-packages
         files: \.py$
-        exclude: tasks.py
+        exclude: ^tests/
         language: python
   {% endif %}
 
