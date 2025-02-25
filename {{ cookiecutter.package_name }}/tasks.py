@@ -3,7 +3,7 @@ import shutil
 import sys
 
 from invoke import task, Context, Collection
-import subprocess
+import time
 
 
 def get_allowed_doc_languages():
@@ -29,9 +29,9 @@ BUILD_TASK_PREFIX = 'build'
 {% endif %}
 
 @task
-def version(c: Context):
+def version(_c: Context):
     """Show the current version."""
-    with open("src/{{ cookiecutter.package_name }}/__about__.py", "r") as f:
+    with open("src/{{ cookiecutter.project_slug }}/__about__.py", "r") as f:
         version_line = f.readline()
         version_num = version_line.split('"')[1]
         print(version_num)
@@ -51,14 +51,20 @@ def ver_task_factory(version_type: str):
 @task
 def compile_requirements(c: Context):
     "Convert requirements.in to requirements.txt and requirements.dev.txt."
-    start_time = subprocess.check_output(["date", "+%s"]).decode().strip()
+
+    start_time = int(time.time())
+
     c.run("{% if cookiecutter.uv %}uv pip compile{% else %}pip-compile{% endif %} requirements.in --output-file=requirements.txt --upgrade")  # --refresh-package
-    reqs_time = subprocess.check_output(["date", "+%s"]).decode().strip()
+
+    reqs_time = int(time.time())
+
     c.run("{% if cookiecutter.uv %}uv pip compile{% else %}pip-compile{% endif %} requirements.dev.in --output-file=requirements.dev.txt --upgrade")
-    end_time = subprocess.check_output(["date", "+%s"]).decode().strip()
-    print(f"Req's compilation time: {int(reqs_time) - int(start_time)} seconds")
-    print(f"Req's dev compilation time: {int(end_time) - int(reqs_time)} seconds")
-    print(f"Total execution time: {int(end_time) - int(start_time)} seconds")
+
+    end_time = int(time.time())
+
+    print(f"Req's compilation time: {reqs_time - start_time} seconds")
+    print(f"Req's dev compilation time: {end_time - reqs_time} seconds")
+    print(f"Total execution time: {end_time - start_time} seconds")
 
     {% if cookiecutter.pyproject %}
     c.run("scripts/include_pyproject_requirements.py requirements.in")
