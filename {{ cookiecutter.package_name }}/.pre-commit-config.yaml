@@ -79,6 +79,7 @@ repos:
           --warn-unused-ignores
           --cache-fine-grained
           --no-namespace-packages
+        require_serial: true
         files: \.py$
         exclude: ^tests/
         language: python
