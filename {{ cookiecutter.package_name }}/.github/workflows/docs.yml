@@ -33,6 +33,7 @@ jobs:
         with:
           ref: gh-pages
           path: gh-pages
+        continue-on-error: true
 
       - uses: actions/setup-python@v5
         with:

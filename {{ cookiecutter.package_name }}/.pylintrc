@@ -9,4 +9,3 @@ disable=
     C0115,  # missing-class-docstring
     R0903,  # too-few-public-methods
     W0718,  # broad-exception-caught
-

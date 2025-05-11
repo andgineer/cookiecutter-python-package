@@ -8,9 +8,9 @@ env:
   PRIMARY_PYTHON_VERSION: '3.12'
   PRIMARY_PLATFORM: 'ubuntu-latest'
   PYTEST_CMD: >-
-    python -m pytest 
-    --junitxml=pytest.xml 
-    --cov-report=term-missing:skip-covered 
+    python -m pytest
+    --junitxml=pytest.xml
+    --cov-report=term-missing:skip-covered
     --cov=src
     tests/
 
@@ -43,7 +43,7 @@ jobs:
 {% endraw %}
 {% if cookiecutter.uv %}
     - name: Install uv environment
-      uses: andgineer/uv-venv@v1
+      uses: andgineer/uv-venv@v3
 {% endif %}
     - name: Install dependencies{% if cookiecutter.dependencies == "uv" %}
       run: uv sync --frozen{% else %}
@@ -116,7 +116,7 @@ jobs:
         MINIMUM_ORANGE: 70
 
     - name: Store Pull Request comment to be posted
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: steps.coverage_comment.outputs.COMMENT_FILE_WRITTEN == 'true'
       with:
         name: python-coverage-comment-action

@@ -48,6 +48,7 @@ else
   mamba env update --quiet -n ${ENV_NAME} -f ${ENV_FILE}
   pip install -e .
   conda deactivate  # RE-activate conda env so python will have access to conda installed deps
+  pre-commit install
 fi
 
 conda activate ${ENV_NAME}
@@ -65,14 +66,14 @@ if [[ ! -d ${VENV_FOLDER} ]] ; then
         echo -e $YELLOW"You can download it from https://www.python.org/downloads/"$NC
         return 1
     fi
-    {% if cookiecutter.uv %}
+{% if cookiecutter.uv %}
     if command -v uv &> /dev/null; then
         if uv venv ${VENV_FOLDER} --python=python${PRIMARY_PYTHON_VERSION}; then
-    {% else %}
+{% else %}
     if command -v virtualenv &> /dev/null; then
         if virtualenv ${VENV_FOLDER} --python=python${PRIMARY_PYTHON_VERSION}; then
             python -m venv ${VENV_FOLDER}
-    {% endif %}
+{% endif %}
             . ${VENV_FOLDER}/bin/activate{% if cookiecutter.dependencies == "uv" %}
             uv sync --frozen{% else %}
             {% if cookiecutter.uv %}uv {% endif %}pip install --upgrade pip
@@ -85,13 +86,13 @@ if [[ ! -d ${VENV_FOLDER} ]] ; then
             return 1
         fi
     else
-        {% if cookiecutter.uv %}
+{% if cookiecutter.uv %}
         echo -e $RED"Error: Astral's UV is not installed."$NC
         echo -e $YELLOW"Please install UV from https://github.com/astral-sh/uv before proceeding."$NC
-        {% else %}
+{% else %}
         echo -e $RED"Error: Virtualenv is not installed."$NC
         echo -e $YELLOW"Please install Virtualenv from https://virtualenv.pypa.io/en/latest/ before proceeding."$NC
-        {% endif %}
+{% endif %}
         return 1
     fi
 else

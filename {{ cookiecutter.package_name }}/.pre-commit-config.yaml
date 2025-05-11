@@ -1,6 +1,7 @@
 exclude: |
     (?x)(
       .venv/|
+      tasks.py|
       resources/
     )
 repos:

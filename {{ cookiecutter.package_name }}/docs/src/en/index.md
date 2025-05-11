@@ -5,7 +5,7 @@
 
 ### Advanced
 
-Use 
+Use
 ```bash
 {{ cookiecutter.package_name }} --help
 ```

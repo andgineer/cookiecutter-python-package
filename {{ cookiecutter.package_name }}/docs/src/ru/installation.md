@@ -25,7 +25,7 @@
     Сначала установите Python, если он еще не установлен.
 
     В командной строке введите (если Python был установлен из Microsoft Store, используйте `python3` вместо `python`):
-    
+
     ```bash
     python -m pip install --user pipx
     ```
