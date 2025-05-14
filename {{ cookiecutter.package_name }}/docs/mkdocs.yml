@@ -30,7 +30,7 @@ plugins:
             show_category_heading: true
             show_symbol_type_heading: true
             show_symbol_type_toc: true
-            docstring_style: numpy
+            docstring_style: google
             filters:
               - "!^_"
             show_signature: true
