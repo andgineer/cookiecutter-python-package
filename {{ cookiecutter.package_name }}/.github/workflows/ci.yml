@@ -124,10 +124,12 @@ jobs:
 
     - name: Upload coverage data to coveralls.io
       if: always()
+      continue-on-error: true
       uses: coverallsapp/github-action@v2
 
     - name: Upload Coverage to Codecov
       if: always()
+      continue-on-error: true
       uses: codecov/codecov-action@v4.0.1
       with:
         fail_ci_if_error: true
