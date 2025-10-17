@@ -36,7 +36,7 @@ include = [ "README.md", "LICENSE.txt",]
 
 [tool.ruff]
 line-length = 99
-
+{% if cookiecutter.typechecker == "pyright" %}
 [tool.pyright]
 venvPath = "."
 venv = ".venv"
@@ -48,7 +48,7 @@ include = ["src"]
 exclude = ["**/node_modules",
     "**/__pycache__"
 ]
-
+{% endif %}
 [tool.hatch.version]
 path = "src/{{ cookiecutter.project_slug }}/__about__.py"
 
