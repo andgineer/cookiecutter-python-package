@@ -57,41 +57,41 @@ jobs:
         with:
           fetch-depth: 0
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ env.PRIMARY_PYTHON_VERSION }}
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PRIMARY_PYTHON_VERSION }}
 {% endraw %}
 {% if cookiecutter.uv or cookiecutter.dependencies == "uv" %}
-    - name: Install uv environment
-      uses: andgineer/uv-venv@v3
+      - name: Install uv environment
+        uses: andgineer/uv-venv@v3
 {% endif %}
-    - name: Install dependencies{% if cookiecutter.dependencies == "uv" %}
-      run: uv sync --frozen{% else %}
-      {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install build --python=${{ env.PRIMARY_PYTHON_VERSION }}{% endraw %}
+      - name: Install dependencies{% if cookiecutter.dependencies == "uv" %}
+        run: uv sync --frozen{% else %}
+        {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install build --python=${{ env.PRIMARY_PYTHON_VERSION }}{% endraw %}
 {% endif %}
 
-    - name: Build package{% if cookiecutter.uv %}
-      run: uv build{% else %}
-      run: python -m build
+      - name: Build package{% if cookiecutter.uv %}
+        run: uv build{% else %}
+        run: python -m build
 {% endif %}
 {% raw %}
-    - name: Publish to PyPI
-      uses: pypa/gh-action-pypi-publish@release/v1
-      with:
-        user: ${{ secrets.PYPI_USERNAME }}
-        password: ${{ secrets.PYPI_PASSWORD }}
-        packages-dir: dist
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: ${{ secrets.PYPI_USERNAME }}
+          password: ${{ secrets.PYPI_PASSWORD }}
+          packages-dir: dist
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ env.RELEASE_VERSION }}
-        release_name: Release ${{ env.RELEASE_VERSION }}
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.RELEASE_VERSION }}
+          release_name: Release ${{ env.RELEASE_VERSION }}
 {% endraw %}
-        body: https://pypi.org/project/{{ cookiecutter.package_name }}/{{ "${{" }} env.RELEASE_VERSION {{ "}}" }}/
-        draft: false
-        prerelease: false
+          body: https://pypi.org/project/{{ cookiecutter.package_name }}/{{ "${{" }} env.RELEASE_VERSION {{ "}}" }}/
+          draft: false
+          prerelease: false
