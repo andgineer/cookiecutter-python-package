@@ -6,6 +6,9 @@ unexport CONDA_PREFIX  # if conda is installed, it will mess with the virtual en
 # If the first argument is "docs" treat additional "targets" as parameters
 ifeq (docs,$(firstword $(MAKECMDGOALS)))
   DOCS_LANGUAGE := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  ifndef DOCS_LANGUAGE
+    DOCS_LANGUAGE := en
+  endif
   # turn the parameters into do-nothing targets
   $(eval $(RUN_ARGS):;@:)
 endif
@@ -37,13 +40,16 @@ reqs:
     {% endif %}
 
 .PHONY: docs # mark as phony so it always runs even we have a docs folder
-.HELP: docs  ## Docs preview for the language specified (bg de en es fr ru)
+.HELP: docs  ## Docs preview for the language specified (bg de en es fr ru), like "make docs ru", by default build for English
 docs:
 	./scripts/docstrings.sh
+	bash ./scripts/docs-render-config.sh $(DOCS_LANGUAGE)
 	open -a "Google Chrome" http://127.0.0.1:8000/{{ cookiecutter.package_name }}/
-	scripts/docs-render-config.sh $(DOCS_LANGUAGE)
+	if [ $(DOCS_LANGUAGE) != "en" ]; then \
+		cp -r ./docs/src/en/images/ ./docs/src/$(DOCS_LANGUAGE)/images/; \
+		cp ./docs/src/en/reference.md ./docs/src/$(DOCS_LANGUAGE)/reference.md; \
+	fi
 	mkdocs serve -f docs/_mkdocs.yml
-
 
 .HELP: uv  ## Install or upgrade uv
 uv:

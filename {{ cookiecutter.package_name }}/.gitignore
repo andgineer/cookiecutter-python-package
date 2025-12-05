@@ -1,4 +1,4 @@
-site
+site/
 .mypy_cache
 **/api-reference/
 .idea/
