@@ -6,7 +6,7 @@
     "pyproject": true,
     "uv": true,
     "anaconda": false,
-    "typechecker": ["mypy", "pyright"],
+    "typechecker": ["pyrefly", "mypy", "pyright"],
     "docker": false,
     "dependencies": ["uv", "pip-tools"],
     "__prompts__": {
