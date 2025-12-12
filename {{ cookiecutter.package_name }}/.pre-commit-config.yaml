@@ -70,7 +70,7 @@ repos:
     hooks:
       - id: pyrefly-check
         name: pyrefly check
-        pass_filenames: false
+        language: system
         args: [
           "--ignore=missing-import",
           "--ignore=missing-source-for-stubs",
