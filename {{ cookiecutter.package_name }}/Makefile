@@ -43,13 +43,15 @@ reqs:
 .HELP: docs  ## Docs preview for the language specified (bg de en es fr ru), like "make docs ru", by default build for English
 docs:
 	./scripts/docstrings.sh
-	bash ./scripts/docs-render-config.sh $(DOCS_LANGUAGE)
-	open -a "Google Chrome" http://127.0.0.1:8000/{{ cookiecutter.package_name }}/
-	if [ $(DOCS_LANGUAGE) != "en" ]; then \
-		cp -r ./docs/src/en/images/ ./docs/src/$(DOCS_LANGUAGE)/images/; \
-		cp ./docs/src/en/reference.md ./docs/src/$(DOCS_LANGUAGE)/reference.md; \
-	fi
+	@LANG="$(if $(DOCS_LANGUAGE),$(DOCS_LANGUAGE),en)"; \
+	bash ./scripts/docs-render-config.sh "$$LANG"; \
+	if [ "$$LANG" != "en" ]; then \
+		cp -r ./docs/src/en/images/ ./docs/src/$$LANG/images/ 2>/dev/null || true; \
+		cp ./docs/src/en/reference.md ./docs/src/$$LANG/reference.md; \
+	fi; \
+	(sleep 2 && open -a "Google Chrome" http://127.0.0.1:8000/) & \
 	mkdocs serve -f docs/_mkdocs.yml
+
 
 .HELP: uv  ## Install or upgrade uv
 uv:

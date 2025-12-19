@@ -10,9 +10,10 @@
 name: static source code checks
 on:
   push:
-    branches:
-      - main
-      - master
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
 jobs:
   static:
     env:

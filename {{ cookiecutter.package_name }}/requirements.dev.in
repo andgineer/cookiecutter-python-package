@@ -8,6 +8,7 @@ allure-pytest
 # lint
 pre-commit
 {% if cookiecutter.typechecker == "mypy" %}mypy{% endif %}
+{% if cookiecutter.typechecker == "pyrefly" %}pyrefly{% endif %}
 
 # docs
 mkdocstrings[python]

@@ -85,12 +85,9 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ env.RELEASE_VERSION }}
-          release_name: Release ${{ env.RELEASE_VERSION }}
+          name: Release ${{ env.RELEASE_VERSION }}
 {% endraw %}
           body: https://pypi.org/project/{{ cookiecutter.package_name }}/{{ "${{" }} env.RELEASE_VERSION {{ "}}" }}/
           draft: false
