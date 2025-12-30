@@ -74,7 +74,8 @@ repos:
         args: [
 #          "--ignore=missing-import",
 #          "--ignore=missing-source-for-stubs",
-          "--project-excludes=tests"
+          "--project-excludes=tests",
+          "--python-interpreter-path=.venv/bin/python"
         ]
 { % endif % }
 
