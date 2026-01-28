@@ -78,10 +78,9 @@ repos:
           "--python-interpreter-path=.venv/bin/python"
         ]
 {% endif %}
-
+{% if cookiecutter.typechecker == "mypy" %}
   - repo: local
     hooks:
-{% if cookiecutter.typechecker == "mypy" %}
       - id: mypy
         name: mypy
         entry: |
