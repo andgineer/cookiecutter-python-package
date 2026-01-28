@@ -77,7 +77,7 @@ repos:
           "--project-excludes=tests",
           "--python-interpreter-path=.venv/bin/python"
         ]
-{ % endif % }
+{% endif %}
 
   - repo: local
     hooks:
