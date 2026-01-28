@@ -98,5 +98,5 @@ repos:
         files: \.py$
         exclude: ^tests/
         language: python
-  { % endif % }
+{% endif %}
 
