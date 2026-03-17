@@ -33,9 +33,9 @@ Use [pre-commit](https://pre-commit.com/#install) hooks for code quality:
 
 # Scripts
 {% if cookiecutter.scripts == "invoke" %}
-Install [invoke](https://docs.pyinvoke.org/en/stable/) preferably with [pipx](https://pypa.github.io/pipx/):
+Install [invoke](https://docs.pyinvoke.org/en/stable/) preferably with [uv tool](https://docs.astral.sh/uv/):
 
-    pipx install invoke
+    uv tool install invoke
 
 For a list of available scripts run:
 
