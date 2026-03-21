@@ -59,10 +59,10 @@ dev-dependencies = [
     "mkdocs-awesome-pages-plugin>=2.10.1",
     "mkdocs-material>=9.6.13",
     "mkdocstrings[python]>=0.29.1",
-    "mypy>=1.15.0",
+    {% if cookiecutter.typechecker == "mypy" %}"mypy>=1.15.0",{% endif %}
     "pre-commit>=4.2.0",
     "pymdown-extensions>=10.15",
-    "pyrefly>=0.50.0",
+    {% if cookiecutter.typechecker == "pyrefly" %}"pyrefly>=0.50.0",{% endif %}
     "pytest-cov>=6.1.1",
     "pytest>=8.3.5",
 ]
