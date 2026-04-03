@@ -7,5 +7,5 @@
 ### Установка приложения
 
 ```bash
-uv tool install {{ cookiecutter.package_name }}
+uv tool install {{ cookiecutter.package_name }} --upgrade --python 3.13
 ```

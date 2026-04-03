@@ -8,7 +8,7 @@ ENV_FILE="environment.yml"
 {% else %}
 VENV_FOLDER=".venv"
 {% endif %}
-PRIMARY_PYTHON_VERSION="3.12"  # sync with .github/workflows/docs.yml&static.yml
+PRIMARY_PYTHON_VERSION="3.13"  # sync with .github/workflows/docs.yml&static.yml
 
 RED='\033[1;31m'
 GREEN='\033[1;32m'
