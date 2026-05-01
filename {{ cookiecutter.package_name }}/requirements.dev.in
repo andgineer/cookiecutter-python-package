@@ -15,13 +15,12 @@ mkdocstrings[python]
 mkdocs-material
 pymdown-extensions
 mkdocs-awesome-pages-plugin
-black
 
 # build & reqs management
 -e .
 hatchling
 {% if cookiecutter.dependencies != "uv" %}
-toml
+tomli-w
 {% endif %}
 {% if not cookiecutter.uv %}
 pip-tools

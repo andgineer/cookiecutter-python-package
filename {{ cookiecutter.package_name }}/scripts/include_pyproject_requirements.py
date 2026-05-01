@@ -8,8 +8,10 @@ License: MIT
 """
 
 import argparse
+import tomllib
+from typing import Any
 
-import toml
+import tomli_w
 
 PROJECT_METADATA_FILE_NAME = "pyproject.toml"
 REQUIREMENTS_FILE_NAME = "requirements.txt"
@@ -17,31 +19,31 @@ REQUIREMENTS_FILE_NAME = "requirements.txt"
 
 def main(requirements_file_name: str, section_path: str) -> None:
     """Include requirements.txt in pyproject.toml project.dependencies array."""
-    with open(requirements_file_name, "r", encoding="utf8") as f:
+    with open(requirements_file_name, encoding="utf8") as f:
         requirements = [
             line.strip() for line in f if line.strip() and not line.lstrip().startswith("#")
         ]
     print(
         f"From {requirements_file_name} read requirements:"
-        f"\n{requirements[:10]}...\n...{len(requirements)} total"
+        f"\n{requirements[:10]}...\n...{len(requirements)} total",
     )
 
-    with open(PROJECT_METADATA_FILE_NAME, "r", encoding="utf8") as f:
-        pyproject_data = toml.load(f)
+    with open(PROJECT_METADATA_FILE_NAME, "rb") as f:
+        pyproject_data = tomllib.load(f)
 
     section_keys = section_path.split(".")
-    target_section = pyproject_data
+    target_section: dict[str, Any] = pyproject_data
     for key in section_keys:
         target_section = target_section[key]
 
     print(
         f"To section `{section_path}` array `dependencies`"
-        f" of `{PROJECT_METADATA_FILE_NAME}`, project `{pyproject_data['project']['name']}`.\n"
+        f" of `{PROJECT_METADATA_FILE_NAME}`, project `{pyproject_data['project']['name']}`.\n",
     )
     target_section["dependencies"] = requirements
 
-    with open(PROJECT_METADATA_FILE_NAME, "w", encoding="utf8") as f:
-        toml.dump(pyproject_data, f)
+    with open(PROJECT_METADATA_FILE_NAME, "wb") as f:
+        tomli_w.dump(pyproject_data, f)
 
 
 if __name__ == "__main__":
