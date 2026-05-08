@@ -19,7 +19,7 @@ name = "Andrey Sorokin"
 email = "andrey@sorokin.engineer"
 
 [project.license]
-file = "LICENSE.txt"
+file = "LICENSE"
 
 [project.urls]
 Homepage = "https://andgineer.github.io/{{ cookiecutter.package_name }}/"
@@ -32,7 +32,7 @@ packages = "find:"
 "" = "src"
 
 [tool.setuptools.manifest]
-include = [ "README.md", "LICENSE.txt",]
+include = [ "README.md", "LICENSE",]
 
 [tool.ruff]
 line-length = 99
