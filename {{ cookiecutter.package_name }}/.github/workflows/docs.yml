@@ -50,9 +50,13 @@ jobs:
         run: {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install ghp-import -r requirements.dev.txt --python=${{ env.PRIMARY_PYTHON_VERSION }}{% endraw %}
 {% endif %}
 {% raw %}
-      - run: ./scripts/build-docs.sh
-      - run: |
-          ghp-import --no-jekyll --push --force site
+
+      - name: Build documentation
+        run: inv build-docs
+
+      - name: Deploy to GitHub Pages
+        run: |
+          ghp-import --no-jekyll --push --force build/docs/site
 
       - name: Restore Allure test reports folder
         uses: peaceiris/actions-gh-pages@v3

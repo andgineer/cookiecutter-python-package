@@ -1,7 +1,8 @@
-site/
-.mypy_cache
-**/api-reference/
 .idea/
+.venv/
+build/
+dist/
+**/api-reference/
 **/__pycache__
 **/.pytest_cache
 **/*.egg-info
@@ -10,10 +11,5 @@ pytest.xml
 .dmypy.json
 pytest-coverage.txt
 *.py-e
-.venv/
-**/_mkdocs.yml*
-**/ru/images/
-**/ru/reference.md
 **/.setup-scripts/
 allure-results/
-dist/
