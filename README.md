@@ -6,7 +6,7 @@ This Cookiecutter template generates a Python project structured for package dev
 
 - **Python Package Setup**: Scaffold for creating a Python package.
 - **Virtual environment**: Convenient creation/activation with a single command. Optionally use blazingly fast `uv`. Alternatively supports Anaconda envs.
-- **Aux scripts**: Optionally Python scripts with Invoke or BASH with Makefile.
+- **Aux scripts**: Optionally Python scripts with Invoke.
 - **GitHub Actions for CI**: Automated workflows for Continuous Integration.
 - **Publishing to PyPI**: Workflow for packaging and distributing your project on [PyPI](https://pypi.org/).
 - **Static Analysis**: Pre-configured Flake8, Black, and MyPy checks. Use incredibly fast `ruff`.
@@ -14,7 +14,7 @@ This Cookiecutter template generates a Python project structured for package dev
 - **Badges in README**: Status badges for CI and coverage.
 - **Pre-commit Hooks**: Pre-configured hooks for code formatting and MyPy checks.
 - **Dependency Management**: Using pip-tools with automated updates in `pyproject.toml` or using `uv lock`.
-- **Version Management**: Makefile commands for package version management.
+- **Version Management**: invoke commands for package version management.
 - **Documentation**: Multilanguage documentation with MkDocs Material, published on GitHub Pages.
 
 ## How to Use This Template

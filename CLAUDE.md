@@ -12,14 +12,13 @@ This is a Cookiecutter template for generating Python package projects with comp
 
 - **Root level**: Contains `cookiecutter.json` configuration and `hooks/` directory
 - **`{{ cookiecutter.package_name }}/`**: The actual template directory that gets rendered when users run cookiecutter
-- **`hooks/post_gen_project.py`**: Post-generation hook that removes files based on user choices (e.g., removes Makefile if user chose Invoke, removes requirements files if using uv lock)
+- **`hooks/post_gen_project.py`**: Post-generation hook that removes files based on user choices (e.g., removes requirements files if using uv lock)
 
 ### Cookiecutter Variables
 
 The template uses Jinja2 templating with variables from `cookiecutter.json`:
 - `package_name`: Kebab-case package name (e.g., 'my-awesome-package')
 - `project_slug`: Python-safe name derived from package_name (underscores instead of hyphens)
-- `scripts`: Choice between "invoke" (tasks.py) or "make" (Makefile)
 - `uv`: Whether to use Astral's uv instead of virtualenv
 - `anaconda`: Whether to use Anaconda environments
 - `dependencies`: Choice between "uv" (uv.lock) or "pip-tools" (requirements.txt)
@@ -43,14 +42,12 @@ Generated projects support three approaches:
 When using pip-tools, `scripts/include_pyproject_requirements.py` syncs requirements.txt into pyproject.toml's `project.dependencies` array.
 
 #### Task Runners
-Projects can use either:
-- **Invoke** (`tasks.py`): Python-based task runner with dynamic task generation
-- **Makefile**: Traditional make-based tasks
+Projects use **Invoke** (`tasks.py`): Python-based task runner with dynamic task generation
 
-Both provide identical functionality:
+It provides:
 - Version bumping: `ver-bug`, `ver-feature`, `ver-release`
 - Dependency updates: `reqs`
-- Documentation preview: `docs` (with language support)
+- Documentation preview: `docs-en/etc`
 - Pre-commit: `pre`
 
 #### Version Management
@@ -159,7 +156,6 @@ Use `{% raw %}...{% endraw %}` blocks in workflow files to preserve `${{ }}` Git
 ### Version Synchronization
 Version is stored in `src/{{ cookiecutter.project_slug }}/__about__.py` and used by:
 - hatchling build backend (reads via `tool.hatch.version.path`)
-- Makefile (parses with grep/cut)
 - Invoke tasks (reads file directly)
 
 ## Configuration Files

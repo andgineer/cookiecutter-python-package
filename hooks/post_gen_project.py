@@ -2,10 +2,6 @@ import os
 import sys
 
 REMOVE_PATHS = [
-    '{% if cookiecutter.scripts == "make" %}tasks.py{% endif %}',
-    '{% if cookiecutter.scripts == "make" %}invoke.yml{% endif %}',
-    '{% if cookiecutter.scripts == "invoke" %}Makefile{% endif %}',
-    '{% if cookiecutter.scripts == "invoke" %}scripts/compile_requirements.sh{% endif %}',
     '{% if not cookiecutter.pyproject %}pyproject.toml{% endif %}',
     '{% if not cookiecutter.pyproject %}scripts/include_pyproject_requirements.py{% endif %}',
     '{% if cookiecutter.pyproject or cookiecutter.typechecker != "pyright"%}pyrightconfig.json{% endif %}',
@@ -13,10 +9,8 @@ REMOVE_PATHS = [
     '{% if cookiecutter.typechecker != "mypy" %}.mypy.ini{% endif %}',
     '{% if not cookiecutter.docker %}Dockerfile{% endif %}',
     '{% if not cookiecutter.docker %}.github/workflows/dockerhub.yml{% endif %}',
-    '{% if not cookiecutter.docker %}build.sh{% endif %}',
     '{% if not cookiecutter.docker %}compose.sh{% endif %}',
     '{% if not cookiecutter.docker %}docker-compose.yml{% endif %}',
-    '{% if cookiecutter.dependencies == "uv" or cookiecutter.anaconda %}scripts/compile_requirements.sh{% endif %}',
     '{% if cookiecutter.dependencies == "uv" or cookiecutter.anaconda %}scripts/include_pyproject_requirements.py{% endif %}',
     '{% if cookiecutter.dependencies == "uv" or cookiecutter.anaconda %}requirements.in{% endif %}',
     '{% if cookiecutter.dependencies == "uv" or cookiecutter.anaconda %}requirements.txt{% endif %}',

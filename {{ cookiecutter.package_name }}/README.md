@@ -32,7 +32,6 @@ Use [pre-commit](https://pre-commit.com/#install) hooks for code quality:
 * [Allure report](https://andgineer.github.io/{{ cookiecutter.package_name }}/builds/tests/)
 
 # Scripts
-{% if cookiecutter.scripts == "invoke" %}
 Install [invoke](https://docs.pyinvoke.org/en/stable/) preferably with [uv tool](https://docs.astral.sh/uv/):
 
     uv tool install invoke
@@ -44,9 +43,6 @@ For a list of available scripts run:
 For more information about a script run:
 
     invoke <script> --help
-{% else %}
-    make help
-{% endif %}
 
 ## Coverage report
 * [Codecov](https://app.codecov.io/gh/andgineer/{{ cookiecutter.package_name }}/tree/main/src%2F{{ cookiecutter.project_slug }})
