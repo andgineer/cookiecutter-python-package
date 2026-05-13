@@ -109,7 +109,8 @@ def docs_rendered(language: str):
     build_config_path.write_text(config)
     shutil.rmtree(build_src_path, ignore_errors=True)
     shutil.copytree(src_path, build_src_path)
-    shutil.copytree(common_path, build_src_path, dirs_exist_ok=True)
+    if common_path.is_dir():
+        shutil.copytree(common_path, build_src_path, dirs_exist_ok=True)
     yield build_config_path
 
 

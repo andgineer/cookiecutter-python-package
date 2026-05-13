@@ -2,7 +2,6 @@
 .venv/
 build/
 dist/
-**/api-reference/
 **/__pycache__
 **/.pytest_cache
 **/*.egg-info
