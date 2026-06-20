@@ -52,8 +52,8 @@ exclude = ["**/node_modules",
 [tool.hatch.version]
 path = "src/{{ cookiecutter.project_slug }}/__about__.py"
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "allure-pytest>=2.14.2",
     "invoke>=2.2.0",
     "tomli-w>=1.2.0",
