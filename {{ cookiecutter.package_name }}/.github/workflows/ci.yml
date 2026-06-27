@@ -46,7 +46,7 @@ jobs:
       uses: andgineer/uv-venv@v3
 {% endif %}
     - name: Install dependencies{% if cookiecutter.dependencies == "uv" %}
-      run: uv sync --frozen{% else %}
+      run: uv sync --frozen --all-extras{% else %}
       run: {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install -r requirements.dev.txt{% endraw %}
 {% endif %}
 {% raw %}
@@ -73,7 +73,7 @@ jobs:
       uses: andgineer/uv-venv@v3
 {% endif %}
     - name: Install dependencies{% if cookiecutter.dependencies == "uv" %}
-      run: uv sync --frozen{% else %}
+      run: uv sync --frozen --all-extras{% else %}
       run: {% if cookiecutter.uv %}uv {% endif %}pip install -r requirements.dev.txt
 {% endif %}
 {% raw %}

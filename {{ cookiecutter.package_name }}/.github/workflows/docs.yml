@@ -45,7 +45,7 @@ jobs:
 {% endif %}
       - name: Install dependencies{% if cookiecutter.dependencies == "uv" %}
         run: |
-          uv sync --frozen
+          uv sync --frozen --all-extras
           uv pip install ghp-import{% else %}
         run: {% if cookiecutter.uv %}uv {% endif %}{% raw %}pip install ghp-import -r requirements.dev.txt --python=${{ env.PRIMARY_PYTHON_VERSION }}{% endraw %}
 {% endif %}
